@@ -1,0 +1,13 @@
+###
+
+GET http://localhost:3000/expense-item
+
+###
+
+POST http://localhost:3000/expense-item
+content-type: application/json
+
+{
+    "name": "sample 1",
+    "date": "2026-07-26T20:03:00Z"
+}
