@@ -1,9 +1,15 @@
-import { IsString, IsDateString } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateExpenseItemDto {
   @IsString()
-  name: string;
+  @IsNotEmpty()
+  description: string;
 
   @IsDateString()
+  @IsNotEmpty()
   date: string;
+
+  @IsString()
+  @IsNotEmpty()
+  value: number;
 }
