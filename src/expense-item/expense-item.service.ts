@@ -33,6 +33,12 @@ export class ExpenseItemService {
 
     Object.assign(expenseItem, updateExpenseItemDto);
 
+    // expenseType is eager-loaded and shares the expenseTypeId column via @JoinColumn,
+    // so it must be cleared or it overrides the scalar expenseTypeId on save.
+    if (updateExpenseItemDto.expenseTypeId !== undefined) {
+      expenseItem.expenseType = null as unknown as ExpenseItem['expenseType'];
+    }
+
     return this.expenseItemRepository.save(expenseItem);
   }
 

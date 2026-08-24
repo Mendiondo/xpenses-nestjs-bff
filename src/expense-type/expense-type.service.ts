@@ -2,14 +2,13 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateExpenseTypeDto } from './dto/create-expense-type.dto';
 import { UpdateExpenseTypeDto } from './dto/update-expense-type.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ExpenseItem } from 'src/expense-item/entities/expense-item.entity';
 import { Repository } from 'typeorm';
 import { ExpenseType } from './entities/expense-type.entity';
 
 @Injectable()
 export class ExpenseTypeService {
   constructor(
-    @InjectRepository(ExpenseItem)
+    @InjectRepository(ExpenseType)
     private readonly expenseTypeRepository: Repository<ExpenseType>,
   ) {}
 

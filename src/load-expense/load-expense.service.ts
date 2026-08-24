@@ -28,7 +28,7 @@ export class LoadExpenseService {
   }
 
   private handleValue(rawValue: string): string {
-    return rawValue.replace(',', '').trim();
+    return rawValue.replace('.', '').replace(',', '.').trim();
   }
 
   private handleNupay(line: string, company: string): string {
@@ -49,7 +49,7 @@ export class LoadExpenseService {
       );
       const createExpenseItemDto = new CreateExpenseItemDto();
       createExpenseItemDto.description = description;
-      createExpenseItemDto.value = Number(value);
+      createExpenseItemDto.value = value;
       createExpenseItemDto.date = date.toISOString().slice(0, 10);
       await this.expenseItemService.create(createExpenseItemDto);
     }

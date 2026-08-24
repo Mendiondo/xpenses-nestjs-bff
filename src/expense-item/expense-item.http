@@ -9,5 +9,7 @@ content-type: application/json
 
 {
     "name": "sample 1",
-    "date": "2026-07-26T20:03:00Z"
+    "description": "s1",
+    "value": "2000",
+    "date": "2026-07-26"
 }
