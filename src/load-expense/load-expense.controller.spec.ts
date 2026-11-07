@@ -4,11 +4,21 @@ import { LoadExpenseService } from './load-expense.service';
 
 describe('LoadExpenseController', () => {
   let controller: LoadExpenseController;
+  let loadExpenseService: Pick<LoadExpenseService, 'loadExpense'>;
 
   beforeEach(async () => {
+    loadExpenseService = {
+      loadExpense: jest.fn(),
+    };
+
     const module: TestingModule = await Test.createTestingModule({
       controllers: [LoadExpenseController],
-      providers: [LoadExpenseService],
+      providers: [
+        {
+          provide: LoadExpenseService,
+          useValue: loadExpenseService,
+        },
+      ],
     }).compile();
 
     controller = module.get<LoadExpenseController>(LoadExpenseController);
@@ -16,5 +26,17 @@ describe('LoadExpenseController', () => {
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  it('passes the uploaded PDF buffer to the service', () => {
+    const buffer = Buffer.from('%PDF-1.7');
+
+    void controller.loadExpense({
+      buffer,
+      mimetype: 'application/pdf',
+      size: buffer.length,
+    });
+
+    expect(loadExpenseService.loadExpense).toHaveBeenCalledWith(buffer);
   });
 });

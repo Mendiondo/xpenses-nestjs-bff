@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { PDFParse, LoadParameters } from 'pdf-parse';
-import { readFile } from 'node:fs/promises';
 import { DateService } from 'src/utils/date/date.service';
 import { ExpenseItemService } from 'src/expense-item/expense-item.service';
 import { CreateExpenseItemDto } from 'src/expense-item/dto/create-expense-item.dto';
@@ -61,11 +60,11 @@ export class LoadExpenseService {
     await this.handleLine(line);
   }
 
-  async loadExpense() {
+  async loadExpense(buffer: Buffer) {
+    const loadParams: LoadParameters = { data: buffer };
+    const parser = new PDFParse(loadParams);
+
     try {
-      const buffer = await readFile('./files/fat.pdf');
-      const loadParams: LoadParameters = { data: buffer };
-      const parser = new PDFParse(loadParams);
       const result = await parser.getText();
 
       const lines = result.text.split('\n');
@@ -73,8 +72,8 @@ export class LoadExpenseService {
       for (const line of lines) {
         await this.processLine(String(line.trim()));
       }
-    } catch (error: unknown) {
-      console.error(error);
+    } finally {
+      await parser.destroy();
     }
   }
 }

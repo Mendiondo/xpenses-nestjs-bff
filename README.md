@@ -25,6 +25,15 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Import expenses from a PDF
+
+Send a PDF as multipart form data in the `file` field:
+
+```bash
+curl -X POST http://localhost:3000/load-expense \
+  -F "file=@statement.pdf;type=application/pdf"
+```
+
 ## Project setup
 
 ```bash

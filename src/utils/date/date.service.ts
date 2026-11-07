@@ -5,19 +5,19 @@ export class DateService {
   formatToDate(day: number, monthStr: string, year: number): Date {
     const months = [
       'jan',
-      'feb',
+      'fev',
       'mar',
-      'apr',
-      'may',
+      'abr',
+      'mai',
       'jun',
       'jul',
-      'aug',
-      'sep',
-      'oct',
+      'ago',
+      'set',
+      'out',
       'nov',
-      'dec',
+      'dez',
     ];
-    const monthIndex = months.indexOf(monthStr.toLowerCase()) + 1;
+    const monthIndex = months.indexOf(monthStr.toLowerCase());
     return new Date(year, monthIndex, day);
   }
 }
