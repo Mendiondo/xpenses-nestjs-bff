@@ -10,6 +10,7 @@ import { ExpenseItemModule } from './expense-item/expense-item.module';
 import { LoadExpenseModule } from './load-expense/load-expense.module';
 import { DateService } from './utils/date/date.service';
 import { ExpenseTypeModule } from './expense-type/expense-type.module';
+import { ExpenseAssociationModule } from './expense-association/expense-association.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { ExpenseTypeModule } from './expense-type/expense-type.module';
     ExpenseItemModule,
     LoadExpenseModule,
     ExpenseTypeModule,
+    ExpenseAssociationModule,
   ],
   controllers: [AppController],
   providers: [AppService, DateService],
