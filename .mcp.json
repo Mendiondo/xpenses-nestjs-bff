@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "xpenses": {
+      "command": "node",
+      "args": ["mcp-server/dist/index.js"],
+      "env": { "XPENSES_API_URL": "http://localhost:3000" }
+    }
+  }
+}
